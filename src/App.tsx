@@ -1,5 +1,8 @@
 import "./App.css";
+import QuestionComponent from "./components/QuestionComponent";
 
-function App() {}
+function App() {
+  return <QuestionComponent />;
+}
 
 export default App;

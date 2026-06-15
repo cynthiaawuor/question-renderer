@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fullName",
+    "label": "What is your full name?",
+    "type": "text",
+    "placeholder": "Enter your full name",
+    "required": true,
+    "minLength": 3,
+    "errorMessages": {
+      "required": "Full name is required.",
+      "minLength": "Full name must be at least 3 characters."
+    }
+  },
+  {
+    "id": "motivation",
+    "label": "Why do you want to join this programme?",
+    "type": "textarea",
+    "placeholder": "Write your answer here",
+    "required": true,
+    "minLength": 50,
+    "maxLength": 500,
+    "errorMessages": {
+      "required": "This answer is required.",
+      "minLength": "Your answer must be at least 50 characters.",
+      "maxLength": "Your answer must not exceed 500 characters."
+    }
+  },
+  {
+    "id": "educationLevel",
+    "label": "What is your highest level of education?",
+    "type": "select",
+    "required": true,
+    "multiple": true,
+    "options": [
+      { "label": "Select one", "value": "" },
+      { "label": "High school", "value": "high_school" },
+      { "label": "Diploma", "value": "diploma" },
+      { "label": "Bachelor's degree", "value": "bachelors" },
+      { "label": "Master's degree", "value": "masters" }
+    ],
+    "errorMessages": {
+      "required": "Please select your education level."
+    }
+  },
+  {
+    "id": "preferredTrack",
+    "label": "Which track are you most interested in?",
+    "type": "radio",
+    "required": true,
+    "options": [
+      { "label": "Frontend Development", "value": "frontend" },
+      { "label": "Backend Development", "value": "backend" },
+      { "label": "Full-stack Development", "value": "fullstack" }
+    ],
+    "errorMessages": {
+      "required": "Please select one track."
+    }
+  },
+  {
+    "id": "skills",
+    "label": "Which skills do you already have?",
+    "type": "checkbox",
+    "required": true,
+    "options": [
+      { "label": "HTML", "value": "html" },
+      { "label": "CSS", "value": "css" },
+      { "label": "JavaScript", "value": "javascript" },
+      { "label": "React", "value": "react" }
+    ],
+    "errorMessages": {
+      "required": "Please select at least one skill."
+    }
+  }
+]
