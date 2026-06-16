@@ -2,36 +2,36 @@ import { useState } from "react";
 import questionsArray from "../data/questions.json";
 import type {
   Answers,
-  AnswerValue,
-  Question,
+  // AnswerValue,
+  // Question,
 } from "../types/QuestionComponent.types";
 
 const questions = questionsArray;
 
-function validate(question: Question, answer: AnswerValue) {
-  if (question.required && answer.length === 0) {
-    return question.errorMessages?.required;
-  }
-  if (
-    question.maxLength !== undefined &&
-    typeof answer === "string" &&
-    answer.length > question.maxLength
-  ) {
-    return question.errorMessages?.maxLength;
-  }
-  if (
-    question.minLength !== undefined &&
-    typeof answer === "string" &&
-    answer.length < question.minLength
-  ) {
-    return question.errorMessages?.minLength;
-  }
-  if (question.pattern !== undefined && typeof answer === "string") {
-    if (!question.pattern.test(answer)) {
-      return question.errorMessages?.pattern;
-    }
-  }
-}
+// function validate(question: Question, answer: AnswerValue) {
+//   if (question.required && answer.length === 0) {
+//     return question.errorMessages?.required;
+//   }
+//   if (
+//     question.maxLength !== undefined &&
+//     typeof answer === "string" &&
+//     answer.length > question.maxLength
+//   ) {
+//     return question.errorMessages?.maxLength;
+//   }
+//   if (
+//     question.minLength !== undefined &&
+//     typeof answer === "string" &&
+//     answer.length < question.minLength
+//   ) {
+//     return question.errorMessages?.minLength;
+//   }
+//   if (question.pattern !== undefined && typeof answer === "string") {
+//     if (!question.pattern.test(answer)) {
+//       return question.errorMessages?.pattern;
+//     }
+//   }
+// }
 
 function preventPasting(
   e: React.ClipboardEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -40,7 +40,7 @@ function preventPasting(
 }
 function onSubmit(e: React.SubmitEvent<HTMLFormElement>) {
   e.preventDefault();
-  questions.forEach((question) => {});
+  // questions.forEach((question) => {});
   console.log("SUCCESS");
 }
 
