@@ -48,13 +48,19 @@ export default function QuestionsRender() {
   const [answers, setAnswers] = useState<Answers>({});
 
   return (
-    <div>
-      <form action="" onSubmit={onSubmit}>
+    <div className="min-h-screen mx-auto max-w-3xl my-8 flex flex-col items-center justify-center px-4 py-8 rounded-2xl bg-gray-50 p-8 shadow-md placeholder:text-gray-50">
+      <h1 className="text-3xl font-bold my-4">Fill in the form below</h1>
+      <form action="" onSubmit={onSubmit} className="flex flex-col gap-3">
         {questions.map((question) => (
           <div key={question.id}>
             {question.type === "text" ? (
-              <div>
-                <label htmlFor={question.id}>{question.label}</label>
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor={question.id}
+                  className="text-sm font-medium text-gray-700"
+                >
+                  {question.label}
+                </label>
                 <input
                   onPaste={preventPasting}
                   type="text"
@@ -70,11 +76,17 @@ export default function QuestionsRender() {
                       };
                     });
                   }}
+                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 shadow-sm transition focus:border-red-200 focus:outline-none focus:ring-1 focus:ring-red-200"
                 />
               </div>
             ) : question.type === "textarea" ? (
               <div>
-                <label htmlFor={question.id}>{question.label}</label>
+                <label
+                  htmlFor={question.id}
+                  className="text-sm font-medium text-gray-700"
+                >
+                  {question.label}
+                </label>
                 <textarea
                   name={question.id}
                   id={question.id}
@@ -89,11 +101,17 @@ export default function QuestionsRender() {
                       };
                     });
                   }}
+                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 shadow-sm transition focus:border-red-200 focus:outline-none focus:ring-1 focus:ring-red-200"
                 ></textarea>
               </div>
             ) : question.type === "select" ? (
               <div>
-                <label htmlFor={question.id}>{question.label}</label>
+                <label
+                  htmlFor={question.id}
+                  className="text-sm font-medium text-gray-700"
+                >
+                  {question.label}
+                </label>
                 <select
                   name={question.id}
                   id={question.id}
@@ -111,6 +129,7 @@ export default function QuestionsRender() {
                       };
                     });
                   }}
+                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 shadow-sm transition focus:border-red-200 focus:outline-none focus:ring-1 focus:ring-red-200"
                 >
                   {question.options?.map((option, index) => (
                     <option key={index} value={option.value}>
@@ -120,10 +139,16 @@ export default function QuestionsRender() {
                 </select>
               </div>
             ) : question.type === "radio" ? (
-              <fieldset>
-                <legend>{question.label}</legend>
+              <fieldset className="rounded-lg border border-gray-200 p-4">
+                <legend className="text-sm font-medium text-gray-700 px-1">
+                  {question.label}
+                </legend>
                 {question.options?.map((option) => (
-                  <div key={option.value} id={question.id}>
+                  <div
+                    key={option.value}
+                    id={question.id}
+                    className="flex cursor-pointer items-center gap-3 rounded-sm px-2 py-2 hover:bg-gray-100"
+                  >
                     <input
                       type="radio"
                       id={option.value}
@@ -138,16 +163,27 @@ export default function QuestionsRender() {
                           };
                         });
                       }}
+                      className="accent-red-600"
                     />
-                    <label htmlFor={option.value}>{option.label}</label>
+                    <label
+                      htmlFor={option.value}
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      {option.label}
+                    </label>
                   </div>
                 ))}
               </fieldset>
             ) : question.type === "checkbox" ? (
-              <fieldset>
-                <legend>{question.label}</legend>
+              <fieldset className="border border-gray-200 rounded-md p-4">
+                <legend className="text-sm font-medium text-gray-700 px-1">
+                  {question.label}
+                </legend>
                 {question.options?.map((option) => (
-                  <div key={option.value}>
+                  <div
+                    key={option.value}
+                    className="flex cursor-pointer items-center gap-3 rounded-sm px-2 py-2 hover:bg-gray-100"
+                  >
                     <input
                       type="checkbox"
                       id={option.value}
@@ -163,26 +199,36 @@ export default function QuestionsRender() {
                           const previousValue =
                             (prev[question.id] as string[]) || [];
 
-                          if (e.target.checked) {
-                            previousValue.push(option.value);
-                          } else {
-                            previousValue.filter((opt) => opt !== option.value);
-                          }
+                          const updatedValue = e.target.checked
+                            ? [...previousValue, option.value]
+                            : previousValue.filter(
+                                (opt) => opt !== option.value,
+                              );
                           return {
                             ...prev,
-                            [question.id]: previousValue,
+                            [question.id]: updatedValue,
                           };
                         });
                       }}
+                      className="accent-red-600"
                     />
-                    <label htmlFor={option.value}>{option.label}</label>
+                    <label
+                      htmlFor={option.value}
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      {option.label}
+                    </label>
                   </div>
                 ))}
               </fieldset>
             ) : null}
           </div>
         ))}
-        <button type="submit" disabled>
+        <button
+          type="submit"
+          disabled={Object.keys(answers).length !== questions.length}
+          className="cursor-pointer mt-4 w-full rounded-lg bg-red-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-red-600/80 disabled:cursor-not-allowed disabled:opacity-50"
+        >
           Submit
         </button>
       </form>
